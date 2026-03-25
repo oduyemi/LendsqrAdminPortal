@@ -1,0 +1,39 @@
+$color-bg: #fbfbfb;
+$color-white: #ffffff;
+$color-primary: #39cdcc;
+$color-primary-hover: #33bdbc;
+$color-text-dark: #213f7d;
+$color-text-light: #545f7d;
+$color-border: #dfe3e8;
+$color-error: red;
+$color-success: green;
+
+$radius-sm: 5px;
+$radius-md: 6px;
+$input-height: 48px;
+$transition-fast: 0.2s ease;
+
+// MIXINS
+@mixin input-focus($color) {
+  border-color: $color;
+  box-shadow: 0 0 0 0.1rem rgba($color, 0.25);
+}
+
+// Button styling
+@mixin button-style($bg-color, $hover-color) {
+  background-color: $bg-color;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
