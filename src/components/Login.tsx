@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useAuthStore } from "../store/use-auth";
 import { loginUser } from "../features/users/api/login";
 import hero from "../assets/images/signinHero.png";
-import logo from "../assets/images/logo.svg";
+import logo from "../assets/images/logo/logo.svg";
 import "../styles/login.scss";
 
 export const LoginForm = () => {

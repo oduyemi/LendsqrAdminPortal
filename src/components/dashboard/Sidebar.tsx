@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import "../../styles/dashboard.scss";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo/logo.svg";
 
 interface Props {
   collapsed: boolean;
