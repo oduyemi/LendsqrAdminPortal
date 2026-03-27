@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const DashboardHeader: React.FC<Props> = ({ toggleSidebar }) => {
-  const { logout, user } = useAuthStore();
+  const { logout } = useAuthStore();
   const navigate = useNavigate();
 
   const handleLogout = () => {

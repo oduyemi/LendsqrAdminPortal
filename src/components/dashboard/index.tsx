@@ -1,23 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { DashboardLayout } from "../../layouts/Dashboard";
 import { useUsers } from "../../features/users/hooks/use-user";
-import { MoreVertical, SlidersHorizontal, Users, UserCheck, CreditCard, PiggyBank } from "lucide-react";
+import { MoreVertical, SlidersHorizontal } from "lucide-react";
 import "../../styles/home.scss";
-import { useOrganization } from "../../context/organization.context";
 import { UserStats } from "./UserStats";
 
 
-const Status = ({ type }) => (
+type StatusProps = {
+  type: "active" | "inactive" | "pending" | "blacklisted";
+};
+
+const Status: React.FC<StatusProps> = ({ type }) => (
   <span className={`status ${type}`}>{type}</span>
 );
 
 export const Dashboard = () => {
-  const { activeOrg } = useOrganization();
-  const { data, isLoading } = useUsers(1, 10, activeOrg);
+  const { data, isLoading } = useUsers(1, 10);
   const navigate = useNavigate();
 
-  const handleRowClick = (id) => {
-    navigate(`/users/${id}`);
+  const handleRowClick = (id: string) => {
+    navigate(`/adimn/users/${id}`);
   };
 
   return (

@@ -4,7 +4,7 @@ import { MoreVertical, SlidersHorizontal } from "lucide-react";
 import { UserStats } from "./UserStats";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../../services/users.service";
-import type { User } from "../users/api/mock/users";
+import type { User } from "../../features/users/api/mock/users";
 import "../../styles/users.scss";
 
 const Status = ({ type }: { type: string }) => (

@@ -1,4 +1,3 @@
-import { users } from "../features/users/api/mock/users";
 import { getMockUsers } from "../features/users/api/mock/users";
 import type { User } from "../features/users/api/mock/users";
 
@@ -19,6 +18,8 @@ export interface GetUsersResponse {
   page: number;
   limit: number;
 }
+
+
 
 export const getUsers = async ({
   page = 1,

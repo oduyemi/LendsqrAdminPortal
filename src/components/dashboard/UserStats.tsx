@@ -1,8 +1,18 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Users, UserCheck, CreditCard, PiggyBank } from "lucide-react";
 import "../../styles/home.scss";
+import type { ReactNode } from "react";
 
-const StatCard = ({ title, value, icon, variant }) => {
+
+type StatCardProps = {
+  title: string;
+  value: string | number;
+  icon: ReactNode;
+  variant: string;
+};
+
+const StatCard: React.FC<StatCardProps> = ({ title, value, icon, variant }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
