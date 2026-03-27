@@ -10,7 +10,30 @@ export interface User {
   status: UserStatus;
 }
 
-const organizations = ["Lendsqr", "Lendstar", "Irorun", "Paylater"];
+const firstNames = [
+  "Grace", "Michael", "David", "Esther", "Samuel", "Ali", "Chinemerem",
+  "Daniel", "Aisha", "Ibrahim", "Chioma", "Tunde", "Chizoba", "Ogechi"
+];
+
+const lastNames = [
+  "Effiom", "Okafor", "Balogun", "Adeyemi", "Olawale",
+  "Ibrahim", "Okeke", "Danladi", "Eze", "Adebayo"
+];
+
+const randomName = () => {
+  const first = randomItem(firstNames);
+  const last = randomItem(lastNames);
+  return { first, last, full: `${first} ${last}` };
+};
+
+const organizations = ["Lendsqr", "Lendstar", "Irorun"];
+
+const statuses: UserStatus[] = [
+  "active",
+  "inactive",
+  "pending",
+  "blacklisted",
+];
 
 const randomItem = <T,>(arr: T[]): T =>
   arr[Math.floor(Math.random() * arr.length)];
@@ -31,12 +54,40 @@ const randomDate = () => {
 const randomPhone = () =>
   `0${Math.floor(7000000000 + Math.random() * 999999999)}`;
 
-  export const users: User[] = Array.from({ length: 1500 }).map((_, i) => ({
-    id: String(i + 1),
-    organization: organizations[i % organizations.length], // ✅ CORRECT PLACE
-    username: `User${i + 1}`,
-    email: `user${i + 1}@test.com`,
-    phone: "08012345678",
-    dateJoined: "01 Jan 2021",
-    status: ["active", "inactive", "pending", "blacklisted"][i % 4],
-  }));
+
+export const users: User[] = Array.from({ length: 1500 }).map((_, i) => {
+    const name = randomName();
+  
+    return {
+      id: `${i + 1}`,
+      organization: randomItem(organizations),
+      username: name.full,
+      email: `${name.first.toLowerCase()}${i + 1}@test.com`,
+      phone: randomPhone(),
+      dateJoined: randomDate(),
+      status: randomItem(statuses),
+    };
+  });
+
+
+  let cachedUsers: User[] | null = null;
+
+export const getMockUsers = (): User[] => {
+  if (!cachedUsers) {
+    cachedUsers = Array.from({ length: 1500 }).map((_, i) => {
+      const name = randomName();
+
+      return {
+        id: `${i + 1}`,
+        organization: randomItem(organizations),
+        username: name.full,
+        email: `${name.first.toLowerCase()}${i + 1}@test.com`,
+        phone: randomPhone(),
+        dateJoined: randomDate(),
+        status: randomItem(statuses),
+      };
+    });
+  }
+
+  return cachedUsers;
+};

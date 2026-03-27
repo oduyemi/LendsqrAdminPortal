@@ -33,7 +33,7 @@ const MenuItem = ({ to, icon, label, active }: any) => (
   </Link>
 );
 
-const organizations = ["Lendsqr", "Lendstar", "Irorun", "Paylater"];
+const organizations = ["Lendsqr", "Lendstar", "Irorun"];
 
 
 export const Sidebar: React.FC<Props> = ({ collapsed }) => {
@@ -78,39 +78,39 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
       )}
 
       <div className="menu-section">
-        <MenuItem to="/dashboard" icon={<Home size={16} />} label="Dashboard" />
+        <MenuItem to="/admin" icon={<Home size={16} />} label="Dashboard" />
       </div>
 
       <div className="menu-section">
         <div className="title">CUSTOMERS</div>
-        <MenuItem to="/users" icon={<Users size={16} />} label="Users" active />
-        <MenuItem to="/guarantors" icon={<UserCheck size={16} />} label="Guarantors" />
-        <MenuItem to="/loans" icon={<CreditCard size={16} />} label="Loans" />
-        <MenuItem to="/decision-models" icon={<Layers size={16} />} label="Decision Models" />
-        <MenuItem to="/savings" icon={<PiggyBank size={16} />} label="Savings" />
-        <MenuItem to="/loan-requests" icon={<FileText size={16} />} label="Loan Requests" />
-        <MenuItem to="/whitelist" icon={<UserX size={16} />} label="Whitelist" />
-        <MenuItem to="/karma" icon={<Percent size={16} />} label="Karma" />
+        <MenuItem to="/admin/users" icon={<Users size={16} />} label="Users" active />
+        <MenuItem to="/admin/guarantors" icon={<UserCheck size={16} />} label="Guarantors" />
+        <MenuItem to="/admin/loans" icon={<CreditCard size={16} />} label="Loans" />
+        <MenuItem to="/admin/decision-models" icon={<Layers size={16} />} label="Decision Models" />
+        <MenuItem to="/admin/savings" icon={<PiggyBank size={16} />} label="Savings" />
+        <MenuItem to="/admin/loan-requests" icon={<FileText size={16} />} label="Loan Requests" />
+        <MenuItem to="/admin/whitelist" icon={<UserX size={16} />} label="Whitelist" />
+        <MenuItem to="/admin/karma" icon={<Percent size={16} />} label="Karma" />
       </div>
 
       <div className="menu-section">
         <div className="title">BUSINESSES</div>
-        <MenuItem to="/organization" icon={<Briefcase size={16} />} label="Organization" />
-        <MenuItem to="/loan-products" icon={<CreditCard size={16} />} label="Loan Products" />
-        <MenuItem to="/savings-products" icon={<PiggyBank size={16} />} label="Savings Products" />
-        <MenuItem to="/fees" icon={<BadgePercent size={16} />} label="Fees and Charges" />
-        <MenuItem to="/transactions" icon={<ClipboardList size={16} />} label="Transactions" />
-        <MenuItem to="/services" icon={<Sliders size={16} />} label="Services" />
-        <MenuItem to="/service-account" icon={<UserCheck size={16} />} label="Service Account" />
-        <MenuItem to="/settlements" icon={<Landmark size={16} />} label="Settlements" />
-        <MenuItem to="/reports" icon={<FileText size={16} />} label="Reports" />
+        <MenuItem to="/admin/organization" icon={<Briefcase size={16} />} label="Organization" />
+        <MenuItem to="/admin/loan-products" icon={<CreditCard size={16} />} label="Loan Products" />
+        <MenuItem to="/admin/savings-products" icon={<PiggyBank size={16} />} label="Savings Products" />
+        <MenuItem to="/admin/fees" icon={<BadgePercent size={16} />} label="Fees and Charges" />
+        <MenuItem to="/admin/transactions" icon={<ClipboardList size={16} />} label="Transactions" />
+        <MenuItem to="/admin/services" icon={<Sliders size={16} />} label="Services" />
+        <MenuItem to="/admin/service-account" icon={<UserCheck size={16} />} label="Service Account" />
+        <MenuItem to="/admin/settlements" icon={<Landmark size={16} />} label="Settlements" />
+        <MenuItem to="/admin/reports" icon={<FileText size={16} />} label="Reports" />
       </div>
 
       <div className="menu-section">
         <div className="title">SETTINGS</div>
-        <MenuItem to="/preferences" icon={<Settings size={16} />} label="Preferences" />
-        <MenuItem to="/pricing" icon={<Sliders size={16} />} label="Fees and Pricing" />
-        <MenuItem to="/audit-logs" icon={<ClipboardList size={16} />} label="Audit Logs" />
+        <MenuItem to="/admin/preferences" icon={<Settings size={16} />} label="Preferences" />
+        <MenuItem to="/admin/pricing" icon={<Sliders size={16} />} label="Fees and Pricing" />
+        <MenuItem to="/admin/audit-logs" icon={<ClipboardList size={16} />} label="Audit Logs" />
       </div>
     </div>
   );

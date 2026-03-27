@@ -1,0 +1,275 @@
+@import "./variables";
+
+/* CONTAINER */
+.table-container {
+  background: $color-white;
+  padding: 10px 20px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  position: relative;
+}
+
+/* FILTER POPOVER (LENDSQR STYLE) */
+.filter-popover {
+  position: absolute;
+  top: 48px;
+  left: 0;
+
+  width: 270px; /* 🔥 key fix */
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+
+  /* sharper shadow like design */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* LITTLE CARET (optional but 🔥 for realism) */
+.filter-popover::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 24px;
+
+  width: 10px;
+  height: 10px;
+  background: #fff;
+
+  border-left: 1px solid #e5e7eb;
+  border-top: 1px solid #e5e7eb;
+
+  transform: rotate(45deg);
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: space-between; /* 🔥 key */
+  margin-top: 6px;
+
+  .reset {
+    height: 40px;
+    padding: 0 16px;
+    border: 1px solid #545f7d;
+    background: transparent;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #545f7d;
+    font-weight: 500;
+  }
+
+  .apply {
+    height: 40px;
+    padding: 0 20px;
+    background: $color-primary;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+
+    &:hover {
+      background: $color-primary-hover;
+    }
+  }
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr) 40px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+
+  .th {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: $color-text-light;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+/* ROW */
+.table-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr) 40px;
+  padding: 16px 0;
+  border-bottom: 1px solid $color-border;
+  align-items: center;
+  font-size: 14px;
+  color: #545f7d;
+
+  &:hover {
+    background: rgba($color-primary, 0.03);
+  }
+}
+
+.filter-grid {
+  display: flex;
+  flex-direction: column; /* 🔥 switch to vertical */
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #545f7d;
+  }
+
+  input,
+  select {
+    height: 40px; /* 🔥 important */
+    border: 1px solid #dfe0eb;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 13px;
+    color: #213f7d;
+    background: #fff;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 1px rgba($color-primary, 0.15);
+    }
+  }
+}
+
+/* STATUS */
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+
+  &.active {
+    background: rgba(57, 205, 98, 0.1);
+    color: #39cd62;
+  }
+
+  &.inactive {
+    background: rgba(84, 95, 125, 0.1);
+    color: #545f7d;
+  }
+
+  &.pending {
+    background: rgba(233, 178, 0, 0.1);
+    color: #e9b200;
+  }
+
+  &.blacklisted {
+    background: rgba(228, 3, 59, 0.1);
+    color: #e4033b;
+  }
+}
+
+.filter-row {
+  background: #fbfbfd;
+  padding: 14px 0;
+  align-items: flex-end;
+}
+
+.filter-cell.span-2 {
+  grid-column: span 2;
+}
+
+.filter-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-cell label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #545f7d;
+  text-transform: uppercase;
+}
+
+.filter-cell input,
+.filter-cell select {
+  height: 36px;
+  border: 1px solid #dfe0eb;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 13px;
+  color: #213f7d;
+  background: #fff;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+}
+
+/* INLINE GROUP */
+.inline-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+
+/* DROPDOWN */
+.menu {
+  position: relative;
+
+  .dropdown {
+    position: absolute;
+    right: 0;
+    top: 28px;
+    width: 160px;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+    div {
+      padding: 12px 14px;
+      font-size: 13px;
+      cursor: pointer;
+
+      &:hover {
+        background: $color-bg;
+      }
+    }
+  }
+}
+
+/* FOOTER */
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+  font-size: 13px;
+
+  .pagination {
+    display: flex;
+    gap: 6px;
+
+    button {
+      padding: 6px 10px;
+      border: 1px solid $color-border;
+      background: transparent;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &.active {
+        background: $color-primary;
+        color: white;
+      }
+    }
+  }
+}
