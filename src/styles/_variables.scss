@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $color-bg: #fbfbfb;
 $color-white: #ffffff;
 $color-primary: #39cdcc;
@@ -16,7 +18,7 @@ $transition-fast: 0.2s ease;
 // MIXINS
 @mixin input-focus($color) {
   border-color: $color;
-  box-shadow: 0 0 0 0.1rem rgba($color, 0.25);
+  box-shadow: inset -1px 0 0 color.adjust($color-border, $lightness: 10%);
 }
 
 // Button styling

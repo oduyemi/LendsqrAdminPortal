@@ -61,7 +61,6 @@
     margin: 20px 0;
   }
 
-  /* PROFILE */
   .profile-card {
     display: flex;
     align-items: center;
@@ -99,7 +98,6 @@
     }
   }
 
-  /* TABS */
   .tabs {
     display: flex;
     gap: 30px;
@@ -129,7 +127,6 @@
     }
   }
 
-  /* DETAILS */
   .details-card {
     background: $color-white;
     border: 1px solid rgba(33, 63, 125, 0.08);
@@ -150,7 +147,6 @@
       }
     }
 
-    /* Info block improvements */
     .info {
       display: flex;
       flex-direction: column;
@@ -167,8 +163,6 @@
         font-size: 14px;
         font-weight: 500;
         color: $color-text-dark;
-
-        /* Prevent overflow issues */
         word-break: break-word;
       }
     }

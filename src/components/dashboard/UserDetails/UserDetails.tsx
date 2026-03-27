@@ -1,27 +1,38 @@
-import React, { useState } from "react";
-import { DashboardLayout } from "../../layouts/Dashboard";
+import React, { useEffect, useState } from "react";
+import { DashboardLayout } from "../../../layouts/Dashboard";
 import { useParams, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getUserById } from "../../services/users.service";
-import { GeneralDetails } from "./tabs/GeneralDetails";
-import { Documents } from "./tabs/Documents";
-import { BankDetails } from "./tabs/BankDetails";
-import { Loans } from "./tabs/Loans";
-import { Savings } from "./tabs/Savings";
-import { AppSystem } from "./tabs/AppSystem";
-import "../../styles/user-details.scss";
+import { GeneralDetails } from "../tabs/GeneralDetails";
+import { Documents } from "../tabs/Documents";
+import { BankDetails } from "../tabs/BankDetails";
+import { Loans } from "../tabs/Loans";
+import { Savings } from "../tabs/Savings";
+import { AppSystem } from "../tabs/AppSystem";
+import "../../../styles/user-details.scss";
 
 export const UserDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [activeTab, setActiveTab] = useState("General Details");
+  const [user, setUser] = useState<any>(null);
 
-  const { data: user, isLoading } = useQuery({
-    queryKey: ["user", id],
-    queryFn: () => getUserById(id!),
-  });
+  // ✅ Load from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem("selectedUser");
 
-  if (isLoading) {
+    if (storedUser) {
+      const parsed = JSON.parse(storedUser);
+
+      if (parsed.id === id) {
+        setUser(parsed);
+      } else {
+        setUser(null);
+      }
+    }
+  }, [id]);
+
+  // Loading state
+  if (!user) {
     return (
       <div className="skeleton-table">
         {Array.from({ length: 6 }).map((_, i) => (
@@ -30,8 +41,6 @@ export const UserDetails: React.FC = () => {
       </div>
     );
   }
-
-  if (!user) return <div>User not found</div>;
 
   const tabs = [
     "General Details",
@@ -66,7 +75,10 @@ export const UserDetails: React.FC = () => {
       <div className="user-details-page">
         {/* Top Bar */}
         <div className="top-bar">
-          <span className="back" onClick={() => navigate("/admin/users")}>
+          <span
+            className="back"
+            onClick={() => navigate("/admin/users")}
+          >
             ← Back to Users
           </span>
 
@@ -82,7 +94,7 @@ export const UserDetails: React.FC = () => {
         <div className="profile-card">
           <div className="left">
             <div className="avatar">
-              {user.username.charAt(0)}
+              {user.username?.charAt(0)}
             </div>
 
             <div>
@@ -111,7 +123,9 @@ export const UserDetails: React.FC = () => {
           {tabs.map((tab) => (
             <div
               key={tab}
-              className={`tab ${activeTab === tab ? "active" : ""}`}
+              className={`tab ${
+                activeTab === tab ? "active" : ""
+              }`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}
@@ -120,7 +134,9 @@ export const UserDetails: React.FC = () => {
         </div>
 
         {/* Tab Content */}
-        <div className="details-card">{renderTab()}</div>
+        <div className="details-card">
+          {renderTab()}
+        </div>
       </div>
     </DashboardLayout>
   );

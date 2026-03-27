@@ -1,4 +1,4 @@
-import { UserDetails } from "../components/dashboard/UserDetails";
+import { UserDetails } from "../components/dashboard/UserDetails/UserDetails";
 
 
 const UserDetailsPage = () => {

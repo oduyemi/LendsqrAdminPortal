@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { DashboardLayout } from "../../layouts/Dashboard";
+import { DashboardLayout } from "../../../layouts/Dashboard";
 import { MoreVertical, SlidersHorizontal } from "lucide-react";
-import { UserStats } from "./UserStats";
+import { UserStats } from "../UserStats";
 import { useNavigate } from "react-router-dom";
-import { getUsers } from "../../services/users.service";
-import type { User } from "../../features/users/api/mock/users";
-import "../../styles/users.scss";
+import { getUsers } from "../../../services/users.service";
+import type { User } from "../../../features/users/api/mock/users";
+import "../../../styles/users.scss";
 
 const Status = ({ type }: { type: string }) => (
   <span className={`status ${type}`}>{type}</span>
@@ -150,6 +150,7 @@ export const Users: React.FC = () => {
                       {/* Navigate to /admin/users/:id */}
                       <div
                         onClick={() => {
+                          localStorage.setItem("selectedUser", JSON.stringify(user));
                           navigate(`/admin/users/${user.id}`);
                         }}
                       >

@@ -1,4 +1,4 @@
-import { Users } from "../components/dashboard/Users";
+import { Users } from "../components/dashboard/Users/Users";
 
 
 const UsersPage = () => {

@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { useAuthStore } from "../store/use-auth";
-import { loginUser } from "../features/users/api/login/index";
-import hero from "../assets/images/signinHero.png";
-import logo from "../assets/images/logo/logo.svg";
-import "../styles/login.scss";
+import { useAuthStore } from "../../store/use-auth";
+import { loginUser } from "../../features/users/api/login/index";
+import hero from "../../assets/images/signinHero.png";
+import logo from "../../assets/images/logo/logo.svg";
+import "../../styles/login.scss";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
