@@ -42,6 +42,8 @@ describe("Users Page", () => {
     expect(await screen.findByText("John")).toBeInTheDocument();
   });
 
+  
+
   it("stores selected user in localStorage", async () => {
     renderComponent();
     const menuButton = await screen.findByTestId("menu-btn-0");

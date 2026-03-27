@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Users, UserCheck, CreditCard, PiggyBank } from "lucide-react";
-import "../../../styles/home.scss";
+import "../../styles/home.scss";
 import type { ReactNode } from "react";
 
 
