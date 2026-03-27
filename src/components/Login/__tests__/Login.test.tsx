@@ -3,7 +3,7 @@ import { LoginForm } from "../Login";
 import { BrowserRouter } from "react-router-dom";
 import * as api from "../../../features/users/api/login/index";
 
-jest.mock("../../features/users/api/login");
+jest.mock("../../../features/users/api/login");
 
 const renderComponent = () =>
   render(

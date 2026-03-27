@@ -1,4 +1,13 @@
 import "@testing-library/jest-dom";
+import { TextEncoder, TextDecoder } from "util";
+
+Object.assign(global, {
+  TextEncoder,
+  TextDecoder,
+});
+
+// Mock fetch
+global.fetch = jest.fn();
 
 // Mock localStorage
 class LocalStorageMock {
@@ -9,11 +18,11 @@ class LocalStorageMock {
   }
 
   getItem(key: string) {
-    return this.store[key] || null;
+    return this.store[key] ?? null;
   }
 
   setItem(key: string, value: string) {
-    this.store[key] = value;
+    this.store[key] = String(value);
   }
 
   removeItem(key: string) {
@@ -23,4 +32,11 @@ class LocalStorageMock {
 
 Object.defineProperty(window, "localStorage", {
   value: new LocalStorageMock(),
+  writable: true,
+});
+
+// Reset before each test
+beforeEach(() => {
+  window.localStorage.clear();
+  jest.clearAllMocks();
 });

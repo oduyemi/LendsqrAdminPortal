@@ -1,4 +1,10 @@
 {
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "verbatimModuleSyntax": false
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

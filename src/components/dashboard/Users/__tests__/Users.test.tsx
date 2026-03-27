@@ -3,7 +3,7 @@ import { Users } from "../Users";
 import { BrowserRouter } from "react-router-dom";
 import * as service from "../../../../services/users.service";
 
-jest.mock("../../services/users.service");
+jest.mock("../../../../services/users.service");
 
 const mockUsers = [
   {
