@@ -1,9 +1,13 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Users } from "../Users";
-import { BrowserRouter } from "react-router-dom";
+import { TestWrapper } from "../../../../utils/tests";
 import * as service from "../../../../services/users.service";
 
 jest.mock("../../../../services/users.service");
+
+jest.mock("../../../../layouts/Dashboard", () => ({
+  DashboardLayout: ({ children }: any) => <div>{children}</div>,
+}));
 
 const mockUsers = [
   {
@@ -18,39 +22,33 @@ const mockUsers = [
 ];
 
 const renderComponent = () =>
-  render(
-    <BrowserRouter>
-      <Users />
-    </BrowserRouter>
-  );
+  render(<Users />, { wrapper: TestWrapper });
 
 describe("Users Page", () => {
-  it("renders users from API", async () => {
+  beforeEach(() => {
     (service.getUsers as jest.Mock).mockResolvedValue({
       data: mockUsers,
     });
+    localStorage.clear();
+  });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("renders users from API", async () => {
     renderComponent();
 
     expect(await screen.findByText("John")).toBeInTheDocument();
   });
 
   it("stores selected user in localStorage", async () => {
-    (service.getUsers as jest.Mock).mockResolvedValue({
-      data: mockUsers,
-    });
-
     renderComponent();
-
-    const menuButton = await screen.findByRole("button", { hidden: true });
-
+    const menuButton = await screen.findByTestId("menu-btn-0");
     fireEvent.click(menuButton);
-
     const viewDetails = await screen.findByText(/view details/i);
     fireEvent.click(viewDetails);
-
     const stored = JSON.parse(localStorage.getItem("selectedUser")!);
-
     expect(stored.username).toBe("John");
   });
 });

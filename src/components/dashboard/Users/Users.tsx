@@ -139,15 +139,14 @@ export const Users: React.FC = () => {
                 </div>
 
                 <div className="menu">
-                  <MoreVertical
-                    onClick={() =>
-                      setActiveMenu((prev) => (prev === i ? null : i))
-                    }
-                  />
-
+                <MoreVertical
+                  data-testid={`menu-btn-${i}`}
+                  onClick={() =>
+                    setActiveMenu((prev) => (prev === i ? null : i))
+                  }
+                />
                   {activeMenu === i && (
                     <div className="dropdown">
-                      {/* Navigate to /admin/users/:id */}
                       <div
                         onClick={() => {
                           localStorage.setItem("selectedUser", JSON.stringify(user));

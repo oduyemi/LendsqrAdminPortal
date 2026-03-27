@@ -1,18 +1,18 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { LoginForm } from "../Login";
-import { BrowserRouter } from "react-router-dom";
+import { TestWrapper } from "../../../utils/tests";
 import * as api from "../../../features/users/api/login/index";
 
 jest.mock("../../../features/users/api/login");
 
 const renderComponent = () =>
-  render(
-    <BrowserRouter>
-      <LoginForm />
-    </BrowserRouter>
-  );
+  render(<LoginForm />, { wrapper: TestWrapper });
 
 describe("LoginForm", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("renders inputs and button", () => {
     renderComponent();
 
@@ -26,7 +26,7 @@ describe("LoginForm", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /log in/i }));
 
-    expect(await screen.findByText(/email is required/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /log in/i })).toBeDisabled();
   });
 
   it("logs in successfully", async () => {
