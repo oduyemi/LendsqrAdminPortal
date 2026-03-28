@@ -1,36 +1,33 @@
 @import "./variables";
 
 .skeleton-row {
-    height: 50px;
-    margin-bottom: 10px;
-    background: linear-gradient(
-      90deg,
-      #eee 25%,
-      #ddd 37%,
-      #eee 63%
-    );
-    animation: shimmer 1.4s infinite;
-  }
-  
-  @keyframes shimmer {
-    0% {
-      background-position: -400px 0;
-    }
-    100% {
-      background-position: 400px 0;
-    }
+  height: 50px;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
+  animation: shimmer 1.4s infinite;
 }
-  
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
 .user-details-page {
+  padding: 20px;
+
   .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .back {
-      font-size: 13px;
+      font-size: 14px;
       color: $color-text-light;
       cursor: pointer;
+
+      &:hover {
+        color: $color-primary;
+      }
     }
 
     .actions {
@@ -43,28 +40,40 @@
         border-radius: $radius-sm;
         font-weight: 600;
         background: transparent;
+        transition: $transition-fast;
       }
 
       .blacklist {
         border: 1px solid #e4033b;
         color: #e4033b;
+
+        &:hover {
+          background: rgba(228, 3, 59, 0.05);
+        }
       }
 
       .activate {
         border: 1px solid $color-primary;
         color: $color-primary;
+
+        &:hover {
+          background: rgba(57, 205, 204, 0.08);
+        }
       }
     }
   }
 
   .page-title {
     margin: 20px 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: $color-text-dark;
   }
 
   .profile-card {
     display: flex;
     align-items: center;
-    gap: 30px;
+    justify-content: space-between;
     padding: 24px;
     background: $color-white;
     border: 1px solid rgba(33, 63, 125, 0.08);
@@ -72,8 +81,8 @@
 
     .left {
       display: flex;
-      gap: 15px;
       align-items: center;
+      gap: 16px;
 
       .avatar {
         width: 60px;
@@ -83,18 +92,52 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 20px;
         font-weight: 600;
+      }
+
+      h5 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      span {
+        font-size: 12px;
+        color: $color-text-light;
       }
     }
 
-    .divider {
-      width: 1px;
-      height: 50px;
-      background: rgba(33, 63, 125, 0.1);
+    .middle,
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
 
-    .stars {
-      color: #e9b200;
+    .middle {
+      span {
+        font-size: 12px;
+        color: $color-text-light;
+      }
+
+      .stars {
+        color: #e9b200;
+        letter-spacing: 2px;
+      }
+    }
+
+    .right {
+      h5 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      span {
+        font-size: 12px;
+        color: $color-text-light;
+      }
     }
   }
 
@@ -110,9 +153,15 @@
       cursor: pointer;
       color: $color-text-light;
       position: relative;
+      transition: $transition-fast;
+
+      &:hover {
+        color: $color-text-dark;
+      }
 
       &.active {
         color: $color-primary;
+        font-weight: 500;
 
         &::after {
           content: "";
@@ -135,15 +184,25 @@
     animation: fade 0.2s ease;
 
     .section {
+      margin-bottom: 25px;
       padding-bottom: 20px;
-      margin-bottom: 20px;
       border-bottom: 1px solid rgba(33, 63, 125, 0.06);
 
+      &:last-child {
+        border-bottom: none;
+      }
+
       h6 {
-        margin-bottom: 12px;
-        font-size: 13px;
+        margin-bottom: 15px;
+        font-size: 14px;
         font-weight: 600;
         color: $color-text-dark;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px 30px;
       }
     }
 
@@ -176,50 +235,16 @@
 }
 
 @keyframes fade {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Better spacing + structure */
-.section {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid rgba(33, 63, 125, 0.06);
-
-  h6 {
-    margin-bottom: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    color: $color-text-dark;
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  .label {
-    font-size: 11px;
-    color: $color-text-light;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .value {
-    font-size: 14px;
-    font-weight: 500;
-    color: $color-text-dark;
-
-    word-break: break-word;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px 30px;
-  }
-}
 
 @media (max-width: 992px) {
   .user-details-page {
@@ -227,13 +252,9 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 20px;
-
-      .divider {
-        display: none;
-      }
     }
 
-    .details-card .grid {
+    .details-card .section .grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -241,6 +262,8 @@
 
 @media (max-width: 576px) {
   .user-details-page {
+    padding: 15px;
+
     .top-bar {
       flex-direction: column;
       align-items: flex-start;
@@ -248,82 +271,43 @@
 
       .actions {
         width: 100%;
-        display: flex;
-        gap: 10px;
 
         button {
           flex: 1;
-          padding: 10px;
-          font-size: 12px;
         }
       }
-    }
-
-    .page-title {
-      font-size: 18px;
-      margin: 15px 0;
     }
 
     .profile-card {
       padding: 16px;
-      gap: 16px;
 
       .left {
         width: 100%;
-
-        .avatar {
-          width: 50px;
-          height: 50px;
-          font-size: 18px;
-        }
-
-        h5 {
-          font-size: 16px;
-        }
-
-        span {
-          font-size: 12px;
-        }
       }
 
-      .tier,
-      .balance {
+      .middle,
+      .right {
         width: 100%;
-        display: flex;
+        flex-direction: row;
         justify-content: space-between;
-        align-items: center;
-      }
-
-      .balance h5 {
-        font-size: 16px;
-      }
-
-      .balance span {
-        font-size: 12px;
       }
     }
 
     .tabs {
       overflow-x: auto;
       gap: 12px;
-      padding-bottom: 6px;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
 
       .tab {
         white-space: nowrap;
         padding: 8px 14px;
         background: #f9fafb;
         border-radius: 20px;
-        font-size: 12px;
 
         &.active {
           background: rgba($color-primary, 0.1);
 
           &::after {
-            display: none; 
+            display: none;
           }
         }
       }
@@ -332,56 +316,16 @@
     .details-card {
       padding: 16px;
 
-      .section {
-        margin-bottom: 15px;
-
-        h6 {
-          font-size: 13px;
-        }
-      }
-
-      .grid {
+      .section .grid {
         grid-template-columns: 1fr;
         gap: 12px;
       }
 
       .info {
-        .label {
-          font-size: 10px;
-        }
-
-        .value {
-          font-size: 13px;
-        }
+        padding: 10px;
+        background: #f9fafb;
+        border-radius: 8px;
       }
-    }
-
-    .section {
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-  
-      h6 {
-        font-size: 12px;
-      }
-    }
-  
-    .info {
-      padding: 10px 12px;
-      background: #f9fafb;
-      border-radius: 8px;
-  
-      .value {
-        font-size: 13px;
-      }
-    }
-  
-    .grid {
-      gap: 10px;
-    }
-  
-    .empty-state {
-      padding: 20px;
-      font-size: 13px;
     }
   }
 }
